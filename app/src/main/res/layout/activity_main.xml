@@ -3,9 +3,65 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#9cff0b">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Smart Menu"
+        android:id="@+id/MainText"
+        android:layout_marginTop="88dp"
+        android:textSize="60dp"
+        android:textStyle="bold"
+        android:singleLine="false"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff5400" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:text="메뉴 고르기"
+        android:id="@+id/SelectButton"
+        android:gravity="top"
+        android:textSize="30dp"
+        android:padding="10dp"
+        android:textStyle="normal|italic"
+        android:background="#ffc5de"
+        android:layout_above="@+id/MenuButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:text="메뉴 목록"
+        android:id="@+id/MenuButton"
+        android:gravity="top"
+        android:textSize="30dp"
+        android:padding="10dp"
+        android:textStyle="normal|italic"
+        android:background="#ffc5de"
+        android:layout_marginBottom="24dp"
+        android:layout_above="@+id/startButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:text="화폐 벌기"
+        android:id="@+id/startButton"
+        android:gravity="top"
+        android:textSize="30dp"
+        android:padding="10dp"
+        android:textStyle="normal|italic"
+        android:background="#ffc5de"
+        android:layout_marginBottom="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
