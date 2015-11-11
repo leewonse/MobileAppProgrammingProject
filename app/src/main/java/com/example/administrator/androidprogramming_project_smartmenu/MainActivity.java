@@ -8,11 +8,14 @@ import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
 
+    GraphicsView gameView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        gameView = (GraphicsView) findViewById(R.id.game_view);
     }
 
     @Override
