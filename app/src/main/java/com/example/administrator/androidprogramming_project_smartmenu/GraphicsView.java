@@ -10,9 +10,12 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+
+import java.util.ArrayList;
 
 public class GraphicsView extends View{
         private int xMin=0;
@@ -20,13 +23,18 @@ public class GraphicsView extends View{
         private int yMin =0;
         private int yMax;
         private float ballRadius = 30;
-        private float ballX;
-        private float ballY;
+        private float ballX=539;
+        private float ballY=1314;
         private float ballSpeedX = 0;
         private float ballSpeedY = 0;
         private RectF ballBounds;
-        private Paint paint;
+        private Paint circlePaint;
+        private Paint blockPaint;
+        private Paint startline;
         Context context;
+
+        ArrayList<brick> block = new ArrayList<brick>();
+
 
         static private GraphicsView singleton = null;
 
@@ -39,16 +47,20 @@ public class GraphicsView extends View{
         float movePositionX;
         float movePositionY;
 
+        int height=150;
+
+    private Integer[] colorArray={Color.parseColor("#FFFFE004"), Color.parseColor("#FFFFC800"), Color.parseColor("#FFFFB100"), Color.parseColor("#FFFF8D00"),
+                                    Color.parseColor("#FFFF6F00"), Color.parseColor("#FFFF5400"), Color.parseColor("#FFFF0100")};
+
         public GraphicsView(Context context){
             super(context);
             this.context = context;
             ballBounds = new RectF();
-            paint = new Paint();
-
-            paint.setTypeface(Typeface.MONOSPACE);
-            paint.setTextSize(10);
-            ballX=xMax/2;
-            ballY=yMax-30;
+            circlePaint = new Paint();
+            startline = new Paint();
+            blockPaint = new Paint();
+            circlePaint.setTypeface(Typeface.MONOSPACE);
+            circlePaint.setTextSize(10);
             this.setFocusableInTouchMode(true);
         }
 
@@ -62,11 +74,21 @@ public class GraphicsView extends View{
 
         @Override
         protected void onDraw(Canvas canvas){
+            canvas.drawLine(0, 1344, 1079, 1344, startline);
             ballBounds.set(ballX - ballRadius, ballY - ballRadius, ballX + ballRadius, ballY + ballRadius);
-            paint.setColor(Color.BLACK);
-            canvas.drawOval(ballBounds, paint);
+            circlePaint.setColor(Color.BLACK);
+            canvas.drawOval(ballBounds, circlePaint);
 
             if(ballSpeedX==0 && ballSpeedY==0){
+
+                addBlock();
+                for(int i=0; i<block.size();i++){
+                    block.get(i).draw(canvas);
+                }
+
+                if(ballY>=1314){
+                    ballY=1314;
+                }
                 if(updown==true){
                     Paint dotLine = new Paint();
                     DashPathEffect dashPath = new DashPathEffect(new float[]{8,3}, 2);
@@ -85,6 +107,36 @@ public class GraphicsView extends View{
 
             update();
             invalidate();
+        }
+
+        public void addBlock(){
+            int random = (int)(Math.random()*4+2);
+            int r_remove;
+            ArrayList<Integer> location = new ArrayList<Integer>();
+            location.add(0);
+            location.add(180);
+            location.add(360);
+            location.add(540);
+            location.add(720);
+            location.add(900);
+
+            for(int i=0; i<6-random; i++) {
+                r_remove=(int)(Math.random()*(6-i));
+                location.remove(r_remove);
+            }
+
+            pushBlock();
+
+
+            for(int i=0; i<random; i++) {
+                block.add(new brick(colorArray[0], location.get(i), height));
+            }
+        }
+
+        public void pushBlock(){
+            for(int i=0; i<block.size();i++){
+            block.get(i).addHeight();
+            }
         }
 
         public void onSizeChanged(int w, int h, int oldW, int oldH){
@@ -111,9 +163,10 @@ public class GraphicsView extends View{
                 ballY = yMin+ballRadius;
             }
 
-            if(ballY+500>=yMax){
+            if(ballY+530>=yMax){
                 ballSpeedX=0;
                 ballSpeedY=0;
+
             }
         }
 
