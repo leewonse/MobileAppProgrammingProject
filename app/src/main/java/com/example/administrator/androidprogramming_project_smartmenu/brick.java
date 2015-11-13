@@ -15,8 +15,8 @@ public class brick {
 
     private RectF block;
     private Paint paint;
-    private float rectX;
-    private float rectY;
+    public float rectX;
+    public float rectY;
     public int hit_number = 0;
 
     private Integer[] colorArray = {Color.parseColor("#FFFFE004"), Color.parseColor("#FFFFC800"), Color.parseColor("#FFFFB100"), Color.parseColor("#FFFF8D00"),
@@ -53,6 +53,10 @@ public class brick {
 
     public void reduceColor() {
         colorNumber--;
+        colorNumber--;
+        if(colorNumber<0){
+            colorNumber=0;
+        }
     }
 
     public int getColorNumber() {
@@ -63,14 +67,4 @@ public class brick {
         rectY += 150;
     }
 
-    public void moveWithCollisionDetection(float BallX, float BallY) {
-        //if ((Math.pow(afP[0] - spur_Radius - rectbug.get(j).x, 2) + Math.pow(afP[1] - rectbug.get(j).y, 2)) < Math.pow(spur_Radius, 2)) {
-        //    rectbug.remove(j);
-        //    rectNumber--;
-        //    if (spur_Radius <= 150) {
-        //        spur_Radius += 25;
-        //}
-        //}
-
-    }
 }

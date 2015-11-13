@@ -96,8 +96,8 @@ public class GraphicsView extends View{
                     canvas.drawLine(downPositionX,downPositionY,movePositionX,movePositionY,dotLine);
                 }
                 if(shoot_Ready==true){
-                    ballSpeedX = (float)((upPositionX-downPositionX)/Math.sqrt(Math.pow((Math.pow(upPositionX,2)-Math.pow(downPositionX,2)),2)+Math.pow((Math.pow(upPositionY,2)-Math.pow(downPositionY,2)),2)))*70000;
-                    ballSpeedY = (float)((upPositionY-downPositionY)/Math.sqrt(Math.pow((Math.pow(upPositionX,2)-Math.pow(downPositionX,2)),2)+Math.pow((Math.pow(upPositionY,2)-Math.pow(downPositionY,2)),2)))*70000;
+                    ballSpeedX = (float)((upPositionX-downPositionX)/Math.sqrt(Math.pow((Math.pow(upPositionX,2)-Math.pow(downPositionX,2)),2)+Math.pow((Math.pow(upPositionY,2)-Math.pow(downPositionY,2)),2)))*30000;
+                    ballSpeedY = (float)((upPositionY-downPositionY)/Math.sqrt(Math.pow((Math.pow(upPositionX,2)-Math.pow(downPositionX,2)),2)+Math.pow((Math.pow(upPositionY,2)-Math.pow(downPositionY,2)),2)))*30000;
                     shoot_Ready=false;
                 }
             }
@@ -108,13 +108,81 @@ public class GraphicsView extends View{
 
             update();
 
+            collisionDetection();
+
             invalidate();
         }
 
+    private void collisionDetection() {
+        for(int i=0;i<block.size();i++){
+            if((ballX+ballRadius<=block.get(i).rectX+20) && (ballY>=block.get(i).rectY && ballY<=block.get(i).rectY+block.get(i).height)){
+                if((ballX+ballRadius >= block.get(i).rectX && ballX+ballRadius<=block.get(i).rectX+20) && (ballY>=block.get(i).rectY && ballY<=block.get(i).rectY+block.get(i).height)) {       //왼쪽 충돌
+                    ballSpeedX = -ballSpeedX;
+                    ballX = block.get(i).rectX-ballRadius;
+                    afterCollision(i);
+                }
+            }
+            else if((ballX-ballRadius >= block.get(i).rectX + block.get(i).width-20) && (ballY>=block.get(i).rectY && ballY<=block.get(i).rectY+block.get(i).height)){
+                if((ballX-ballRadius >= block.get(i).rectX + block.get(i).width-20 && ballX-ballRadius <= block.get(i).rectX + block.get(i).width) && (ballY>=block.get(i).rectY && ballY<=block.get(i).rectY+block.get(i).height)){    //오른쪽 충돌
+                    ballSpeedX = -ballSpeedX;
+                    ballX = block.get(i).rectX + block.get(i).width + ballRadius;
+                    afterCollision(i);
+                }
+            }
+            else if((ballX >= block.get(i).rectX && ballX <=block.get(i).rectX+block.get(i).width) && (ballY+ballRadius <= block.get(i).rectY+20)){
+                if((ballX >= block.get(i).rectX && ballX <=block.get(i).rectX+block.get(i).width) && (ballY+ballRadius <= block.get(i).rectY+20 && ballY+ballRadius >= block.get(i).rectY)){     //윗쪽 충돌
+                    ballSpeedY = -ballSpeedY;
+                    ballY = block.get(i).rectY - ballRadius;
+                    afterCollision(i);
+                }
+            }
+            else if((ballX >= block.get(i).rectX && ballX <=block.get(i).rectX+block.get(i).width) && (ballY-ballRadius >= block.get(i).rectY + block.get(i).height - 20)){
+                if((ballX >= block.get(i).rectX && ballX <=block.get(i).rectX+block.get(i).width) && (ballY-ballRadius>=block.get(i).rectY+block.get(i).height-20 && ballY-ballRadius<=block.get(i).rectY+block.get(i).height)){     //아래쪽 충돌
+                    ballSpeedY = -ballSpeedY;
+                    ballY = block.get(i).rectY+block.get(i).height + ballRadius;
+                    afterCollision(i);
+                }
+            }
+            else if(ballX<block.get(i).rectX && ballY<block.get(i).rectY){
+                if(Math.pow(block.get(i).rectX-ballX,2)+Math.pow(block.get(i).rectY-ballY,2)<=900){        //2사분면
+                ballSpeedY = -ballSpeedY;
+                ballSpeedX = -ballSpeedX;
+                afterCollision(i);
+            }}
+            else if(ballX>block.get(i).rectX + block.get(i).width && ballY<block.get(i).rectY){
+                if(Math.pow(block.get(i).rectX + block.get(i).width - ballX,2)+Math.pow(block.get(i).rectY - ballY,2)<=900){       //1사분면
+                ballSpeedY = -ballSpeedY;
+                ballSpeedX = -ballSpeedX;
+                afterCollision(i);
+            }}
+            else if(ballX<block.get(i).rectX && ballY>block.get(i).rectY+block.get(i).height){
+                if(Math.pow(block.get(i).rectX-ballX,2)+Math.pow(block.get(i).rectY+block.get(i).height-ballY,2)<=900){          //3사분면
+                ballSpeedY = -ballSpeedY;
+                ballSpeedX = -ballSpeedX;
+                afterCollision(i);
+            }}
+            else if(ballX>block.get(i).rectX + block.get(i).width && ballY>block.get(i).rectY+block.get(i).height){
+                if(Math.pow(block.get(i).rectX + block.get(i).width - ballX,2)+Math.pow(block.get(i).rectY + block.get(i).height-ballY,2)<=900){       //4사분면
+                ballSpeedY = -ballSpeedY;
+                ballSpeedX = -ballSpeedX;
+                afterCollision(i);
+            }}
+        }
+
+    }
+
+    public void afterCollision(int number){
+        if(block.get(number).getColorNumber()==0 || block.get(number).getColorNumber()==1){
+            block.remove(number);
+        }
+        else{
+            block.get(number).reduceColor();
+        }
+    }
 
 
-        public void addBlock(){
-            int random = (int)(Math.random()*4+2);
+    public void addBlock(){
+            int random = (int)(Math.random()*3+1);
             int r_remove;
             ArrayList<Integer> location = new ArrayList<Integer>();
             location.add(0);
