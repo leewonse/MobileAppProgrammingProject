@@ -22,15 +22,17 @@ public class GraphicsView extends View{
         private int xMax;
         private int yMin =0;
         private int yMax;
+
         private float ballRadius = 30;
         private float ballX=539;
         private float ballY=1314;
         private float ballSpeedX = 0;
         private float ballSpeedY = 0;
+
         private RectF ballBounds;
         private Paint circlePaint;
-        private Paint blockPaint;
         private Paint startline;
+        private Paint blockPaint;
         Context context;
 
         ArrayList<brick> block = new ArrayList<brick>();
@@ -40,6 +42,8 @@ public class GraphicsView extends View{
 
         boolean updown=false;
         boolean shoot_Ready=false;
+        boolean addBlock=true;
+
         float upPositionX;
         float upPositionY;
         float downPositionX;
@@ -49,9 +53,6 @@ public class GraphicsView extends View{
 
         int height=150;
 
-    private Integer[] colorArray={Color.parseColor("#FFFFE004"), Color.parseColor("#FFFFC800"), Color.parseColor("#FFFFB100"), Color.parseColor("#FFFF8D00"),
-                                    Color.parseColor("#FFFF6F00"), Color.parseColor("#FFFF5400"), Color.parseColor("#FFFF0100")};
-
         public GraphicsView(Context context){
             super(context);
             this.context = context;
@@ -59,18 +60,15 @@ public class GraphicsView extends View{
             circlePaint = new Paint();
             startline = new Paint();
             blockPaint = new Paint();
+
             circlePaint.setTypeface(Typeface.MONOSPACE);
             circlePaint.setTextSize(10);
             this.setFocusableInTouchMode(true);
         }
 
         public static GraphicsView getGraphicsView(){return singleton;}
-        public GraphicsView(Context context, AttributeSet attrs) {
-        this(context);
-    }
-        public GraphicsView(Context context,AttributeSet attrs, int defStyle) {
-        super(context);
-    }
+        public GraphicsView(Context context, AttributeSet attrs) {this(context);}
+        public GraphicsView(Context context,AttributeSet attrs, int defStyle) {super(context);}
 
         @Override
         protected void onDraw(Canvas canvas){
@@ -81,9 +79,8 @@ public class GraphicsView extends View{
 
             if(ballSpeedX==0 && ballSpeedY==0){
 
-                addBlock();
-                for(int i=0; i<block.size();i++){
-                    block.get(i).draw(canvas);
+                if(addBlock==true) {
+                    addBlock();
                 }
 
                 if(ballY>=1314){
@@ -91,11 +88,11 @@ public class GraphicsView extends View{
                 }
                 if(updown==true){
                     Paint dotLine = new Paint();
-                    DashPathEffect dashPath = new DashPathEffect(new float[]{8,3}, 2);
+                    DashPathEffect dashPath = new DashPathEffect(new float[]{20,10}, 1);
 
                     dotLine.setStyle( Paint.Style.STROKE );
                     dotLine.setPathEffect(dashPath);
-                    dotLine.setStrokeWidth(3);
+                    dotLine.setStrokeWidth(5);
                     canvas.drawLine(downPositionX,downPositionY,movePositionX,movePositionY,dotLine);
                 }
                 if(shoot_Ready==true){
@@ -105,9 +102,16 @@ public class GraphicsView extends View{
                 }
             }
 
+            for(int i=0; i<block.size();i++){
+                block.get(i).draw(canvas);
+            }
+
             update();
+
             invalidate();
         }
+
+
 
         public void addBlock(){
             int random = (int)(Math.random()*4+2);
@@ -125,19 +129,24 @@ public class GraphicsView extends View{
                 location.remove(r_remove);
             }
 
-            pushBlock();
+                pushBlock();
 
 
             for(int i=0; i<random; i++) {
-                block.add(new brick(colorArray[0], location.get(i), height));
+                block.add(new brick(location.get(i), height));
             }
+            addBlock=false;
         }
 
         public void pushBlock(){
             for(int i=0; i<block.size();i++){
             block.get(i).addHeight();
+            block.get(i).setColor();
             }
         }
+
+
+
 
         public void onSizeChanged(int w, int h, int oldW, int oldH){
             xMax = w-1;
@@ -162,11 +171,12 @@ public class GraphicsView extends View{
                 ballSpeedY = -ballSpeedY;
                 ballY = yMin+ballRadius;
             }
-
-            if(ballY+530>=yMax){
-                ballSpeedX=0;
-                ballSpeedY=0;
-
+            if(ballY+530>yMax){
+                addBlock=true;
+                if(ballY+530>=yMax){
+                    ballSpeedX=0;
+                    ballSpeedY=0;
+                }
             }
         }
 
