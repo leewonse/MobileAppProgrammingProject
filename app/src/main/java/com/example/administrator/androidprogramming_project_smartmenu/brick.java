@@ -36,15 +36,23 @@ public class brick {
     }
 
     public void draw(Canvas canvas) {
+
+
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(colorArray[colorNumber]);
         block.set(rectX, rectY, rectX + width, rectY + height);
         canvas.drawRect(block, paint);
 
+        paint.setTextSize(50);
+        paint.setColor(Color.BLUE);
+        paint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText((colorNumber + 1) + "", rectX + 90, rectY + 90, paint);
+
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(2.0F);
         paint.setColor(Color.DKGRAY);
         canvas.drawRect(block, paint);
+
     }
 
     public void setColor() {
@@ -61,6 +69,10 @@ public class brick {
 
     public int getColorNumber() {
         return colorNumber;
+    }
+
+    public float getHeight() {
+        return rectY+height;
     }
 
     public void addHeight() {

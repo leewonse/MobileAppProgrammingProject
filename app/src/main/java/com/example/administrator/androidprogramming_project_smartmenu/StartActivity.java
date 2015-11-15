@@ -1,22 +1,29 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
+import android.view.View;
 
-public class MainActivity extends FragmentActivity {
-
-    GraphicsView gameView;
+/**
+ * Created by Administrator on 2015-11-15.
+ */
+public class StartActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        gameView = (GraphicsView) findViewById(R.id.game_view);
+        setContentView(R.layout.activity_main);
+
+        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_game = new Intent(getApplicationContext(), GameChoose.class);
+                startActivity(Go_game);
+            }
+        });
     }
 
     @Override
@@ -40,4 +47,5 @@ public class MainActivity extends FragmentActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

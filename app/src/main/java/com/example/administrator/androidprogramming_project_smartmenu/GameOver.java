@@ -1,22 +1,41 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity {
+/**
+ * Created by Administrator on 2015-11-15.
+ */
+public class GameOver extends FragmentActivity {
 
-    GraphicsView gameView;
-
+        TextView scoreView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        gameView = (GraphicsView) findViewById(R.id.game_view);
+        setContentView(R.layout.activity_game_over);
+
+        Intent intent = getIntent();
+        int score = intent.getExtras().getInt("score");
+
+        scoreView = (TextView)findViewById(R.id.scoreView);
+        scoreView.setText(score+"");
+
+        findViewById(R.id.returnButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_chooseActivity = new Intent(getApplicationContext(),GameChoose.class);
+                Go_chooseActivity.setFlags(Go_chooseActivity.FLAG_ACTIVITY_SINGLE_TOP|Go_chooseActivity.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(Go_chooseActivity);
+                finish();
+            }
+        });
     }
 
     @Override

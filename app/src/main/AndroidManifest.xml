@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity
-            android:name=".MainActivity"
+            android:name=".StartActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,5 +16,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".GameChoose"
+            android:label="GameChoose">
+        </activity>
+        <activity
+            android:name=".GameStart"
+            android:label="GameOver">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="Game">
+        </activity>
+        <activity
+            android:name=".GameOver"
+            android:label="GameOver">
+        </activity>
+        <activity
+            android:name=".GameLotto"
+            android:label="GameOver">
+        </activity>
+
+
     </application>
 </manifest>

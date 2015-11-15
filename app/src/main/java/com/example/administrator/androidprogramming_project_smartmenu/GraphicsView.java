@@ -1,14 +1,18 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -32,12 +36,12 @@ public class GraphicsView extends View{
         private RectF ballBounds;
         private Paint circlePaint;
         private Paint startline;
-        private Paint blockPaint;
-        Context context;
+        private Paint scorePaint;
+        Context mcontext;
 
         ArrayList<brick> block = new ArrayList<brick>();
 
-
+        private int score=0;
         static private GraphicsView singleton = null;
 
         boolean updown=false;
@@ -55,11 +59,11 @@ public class GraphicsView extends View{
 
         public GraphicsView(Context context){
             super(context);
-            this.context = context;
+            this.mcontext = context;
             ballBounds = new RectF();
             circlePaint = new Paint();
             startline = new Paint();
-            blockPaint = new Paint();
+            scorePaint = new Paint();
 
             circlePaint.setTypeface(Typeface.MONOSPACE);
             circlePaint.setTextSize(10);
@@ -72,13 +76,19 @@ public class GraphicsView extends View{
 
         @Override
         protected void onDraw(Canvas canvas){
+            scorePaint.setTextSize(70);
+            canvas.drawText("최고점수",150,1470,scorePaint);
+            canvas.drawText("점    수",710,1470,scorePaint);
+            scorePaint.setTextSize(70);
+            if(score>=10){
+            canvas.drawText(score+"",780,1670,scorePaint);}
+            else{canvas.drawText(score+"",790,1670,scorePaint);}
             canvas.drawLine(0, 1344, 1079, 1344, startline);
             ballBounds.set(ballX - ballRadius, ballY - ballRadius, ballX + ballRadius, ballY + ballRadius);
             circlePaint.setColor(Color.BLACK);
             canvas.drawOval(ballBounds, circlePaint);
 
             if(ballSpeedX==0 && ballSpeedY==0){
-
                 if(addBlock==true) {
                     addBlock();
                 }
@@ -107,13 +117,11 @@ public class GraphicsView extends View{
             }
 
             update();
-
             collisionDetection();
-
             invalidate();
         }
 
-    private void collisionDetection() {
+    private void collisionDetection(){
         for(int i=0;i<block.size();i++){
             if((ballX+ballRadius<=block.get(i).rectX+20) && (ballY>=block.get(i).rectY && ballY<=block.get(i).rectY+block.get(i).height)){
                 if((ballX+ballRadius >= block.get(i).rectX && ballX+ballRadius<=block.get(i).rectX+20) && (ballY>=block.get(i).rectY && ballY<=block.get(i).rectY+block.get(i).height)) {       //왼쪽 충돌
@@ -168,18 +176,17 @@ public class GraphicsView extends View{
                 afterCollision(i);
             }}
         }
-
     }
 
     public void afterCollision(int number){
         if(block.get(number).getColorNumber()==0 || block.get(number).getColorNumber()==1){
             block.remove(number);
+            score++;
         }
         else{
             block.get(number).reduceColor();
         }
     }
-
 
     public void addBlock(){
             int random = (int)(Math.random()*3+1);
@@ -196,10 +203,7 @@ public class GraphicsView extends View{
                 r_remove=(int)(Math.random()*(6-i));
                 location.remove(r_remove);
             }
-
                 pushBlock();
-
-
             for(int i=0; i<random; i++) {
                 block.add(new brick(location.get(i), height));
             }
@@ -210,11 +214,18 @@ public class GraphicsView extends View{
             for(int i=0; i<block.size();i++){
             block.get(i).addHeight();
             block.get(i).setColor();
+
+                if(block.get(i).getHeight()>=1344){
+
+                    Intent intent = new Intent(mcontext, GameOver.class);
+                    if (mcontext instanceof Activity) {
+                        intent.putExtra("score",score);
+                        mcontext.startActivity(intent);
+                        ((MainActivity) mcontext).finish();
+                    }
+                }
             }
         }
-
-
-
 
         public void onSizeChanged(int w, int h, int oldW, int oldH){
             xMax = w-1;

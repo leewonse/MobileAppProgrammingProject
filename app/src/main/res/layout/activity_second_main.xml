@@ -26,7 +26,7 @@
             <Button
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:id="@+id/button"
+                android:id="@+id/goblockgame"
                 android:layout_gravity="center_horizontal|bottom"
                 android:background="@drawable/start"
                 android:layout_alignParentTop="true"
@@ -60,7 +60,7 @@
             <Button
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:id="@+id/button2"
+                android:id="@+id/golottogame"
                 android:layout_gravity="center_horizontal|bottom"
                 android:background="@drawable/start"
                 android:layout_alignParentTop="true"

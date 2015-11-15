@@ -4,24 +4,81 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/FULLSCREEN">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button4"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="133dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/textView9"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="85dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="20dp"
+            android:background="#70b0b0b0">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|top"
+                android:id="@+id/INLAYOUT">
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/startButton"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/start"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="블럭깨기"
+                    android:id="@+id/textView9"
+                    android:layout_marginTop="70dp"
+                    android:textSize="70dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#ff0000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="※게임 방법※"
+                    android:id="@+id/textView11"
+                    android:textColor="#0400ff"
+                    android:textSize="25dp"
+                    android:layout_above="@+id/textView12"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView12"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="공을 보내고 싶은 방향으로 드래그하여 턴마다 내려오는 벽돌을 깨자!"
+                    android:textColor="#000000"
+                    android:textSize="23dp"
+                    android:gravity="center"
+                    android:paddingLeft="7dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="벽돌의 체력은 공이 맞을때마다 2씩 깎인다"
+                    android:id="@+id/textView13"
+                    android:layout_below="@+id/textView12"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="23dp"
+                    android:textColor="#000000"
+                    android:gravity="center" />
+            </RelativeLayout>
+        </FrameLayout>
+
     </RelativeLayout>
+
 </LinearLayout>

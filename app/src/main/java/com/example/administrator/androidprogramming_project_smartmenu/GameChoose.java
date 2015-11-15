@@ -1,22 +1,39 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
-public class MainActivity extends FragmentActivity {
-
-    GraphicsView gameView;
+/**
+ * Created by Administrator on 2015-11-15.
+ */
+public class GameChoose extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        gameView = (GraphicsView) findViewById(R.id.game_view);
+        setContentView(R.layout.activity_second_main);
+
+        findViewById(R.id.goblockgame).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_blockgame = new Intent(getApplicationContext(), GameStart.class);
+                startActivity(Go_blockgame);
+            }
+        });
+
+        findViewById(R.id.golottogame).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_lottogame = new Intent(getApplicationContext(),GameLotto.class);
+                startActivity(Go_lottogame);
+            }
+        });
     }
 
     @Override
