@@ -2,4 +2,213 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/frameLayout3"
+            android:background="#c220868c">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/titleText"
+                android:layout_gravity="left|center_vertical"
+                android:text="Add Menu List"
+                android:textSize="40dp"
+                android:layout_marginLeft="0dp"
+                android:textColor="#000000"
+                android:gravity="center" />
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/frameLayout3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/addView">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/linearLayout"
+                android:background="#7c999999"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가게명"
+                    android:id="@+id/store"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textSize="25dp"
+                    android:textColor="#000000"
+                    android:layout_margin="10dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editstorename"
+                    android:hint="※ 가게명을 입력해주세요" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:background="#7c999999"
+                android:layout_below="@+id/linearLayout"
+                android:id="@+id/linearLayout3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="메뉴"
+                    android:id="@+id/menu"
+                    android:textSize="25dp"
+                    android:textColor="#000000"
+                    android:layout_centerVertical="true"
+                    android:layout_alignLeft="@+id/editText2"
+                    android:layout_alignStart="@+id/editText2"
+                    android:layout_margin="10dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editmenu"
+                    android:layout_below="@+id/price"
+                    android:layout_toRightOf="@+id/editlowerprice"
+                    android:layout_toEndOf="@+id/editlowerprice"
+                    android:hint="※ 메뉴를 입력해주세요" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/linearLayout2"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7c999999"
+                    android:layout_margin="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="가격대"
+                        android:id="@+id/price"
+                        android:textSize="25dp"
+                        android:textColor="#000000"
+                        android:layout_below="@+id/editlowerprice"
+                        android:layout_alignLeft="@+id/editText2"
+                        android:layout_alignStart="@+id/editText2"
+                        android:layout_margin="10dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:layout_width="160dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/editlowerprice"
+                            android:layout_below="@+id/store"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:hint="$ 최저금액"
+                            android:layout_gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~"
+                            android:id="@+id/mid"
+                            android:textSize="30dp"
+                            android:textIsSelectable="false"
+                            android:layout_weight="2"
+                            android:layout_marginRight="15dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp" />
+
+                        <EditText
+                            android:layout_width="160dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/edithigherprice"
+                            android:layout_weight="3"
+                            android:hint="$ 최고금액"
+                            android:layout_gravity="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:background="#7c999999"
+                android:id="@+id/d"
+                android:layout_below="@+id/linearLayout2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="지역"
+                    android:id="@+id/location"
+                    android:textSize="25dp"
+                    android:textColor="#000000"
+                    android:layout_above="@+id/saveButton"
+                    android:layout_alignLeft="@+id/store"
+                    android:layout_alignStart="@+id/store"
+                    android:layout_margin="10dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/getlocation"
+                    android:hint="※ 지역을 입력하세요" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:id="@+id/saveButton"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/save"
+                android:layout_margin="3dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

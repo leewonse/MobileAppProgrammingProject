@@ -17,6 +17,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MenuChoose"
+            android:label="MenuChoose">
+        </activity>
+        <activity
+            android:name=".MenuManage"
+            android:label="MenuManage">
+        </activity>
+        <activity
+            android:name=".MenuEnroll"
+            android:label="MenuEnroll">
+        </activity>
+        <activity
             android:name=".GameChoose"
             android:label="GameChoose">
         </activity>

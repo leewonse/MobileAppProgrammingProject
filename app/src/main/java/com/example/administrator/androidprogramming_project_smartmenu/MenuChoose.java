@@ -5,39 +5,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 /**
- * Created by Administrator on 2015-11-15.
+ * Created by Administrator on 2015-11-16.
  */
-public class StartActivity extends Activity {
+public class MenuChoose extends Activity {
 
+    Button choosebutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_choose);
 
-        findViewById(R.id.SelectButton).setOnClickListener(new View.OnClickListener() {
+        choosebutton = (Button)findViewById(R.id.chooseButton);
+        choosebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Go_Choose = new Intent(getApplicationContext(), MenuChoose.class);
-                startActivity(Go_Choose);
+                Intent Go_add = new Intent(getApplicationContext(), MenuEnroll.class);
+                startActivity(Go_add);
             }
         });
-
-        findViewById(R.id.MenuButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Go_Manage = new Intent(getApplicationContext(), MenuManage.class);
-                startActivity(Go_Manage);
-            }
-        });
-
-        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Go_game = new Intent(getApplicationContext(), GameChoose.class);
-                startActivity(Go_game);
+        choosebutton.setOnTouchListener(new View.OnTouchListener() { //버튼 터치시 이벤트
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) // 버튼을 누르고 있을 때
+                    choosebutton.setBackgroundResource(R.drawable.choosemenudown);
+                if (event.getAction() == MotionEvent.ACTION_UP) { //버튼에서 손을 떼었을 때
+                    choosebutton.setBackgroundResource(R.drawable.choosemenuup);
+                }
+                return false;
             }
         });
     }
@@ -63,5 +61,4 @@ public class StartActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

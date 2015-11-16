@@ -10,36 +10,14 @@ import android.view.View;
 /**
  * Created by Administrator on 2015-11-15.
  */
-public class StartActivity extends Activity {
+public class MenuEnroll extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_enroll);
 
-        findViewById(R.id.SelectButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Go_Choose = new Intent(getApplicationContext(), MenuChoose.class);
-                startActivity(Go_Choose);
-            }
-        });
 
-        findViewById(R.id.MenuButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Go_Manage = new Intent(getApplicationContext(), MenuManage.class);
-                startActivity(Go_Manage);
-            }
-        });
-
-        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Go_game = new Intent(getApplicationContext(), GameChoose.class);
-                startActivity(Go_game);
-            }
-        });
     }
 
     @Override
@@ -63,5 +41,4 @@ public class StartActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
