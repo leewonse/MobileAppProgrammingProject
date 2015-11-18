@@ -1,8 +1,10 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import java.util.List;
  * Created by Administrator on 2015-11-15.
  */
 public class MenuManage extends Activity {
+
     RecyclerView recyclerView;
 
     @Override
@@ -33,6 +36,20 @@ public class MenuManage extends Activity {
             }
         });
 
+        recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getApplicationContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        ArrayList<Recycler_item> items=new ArrayList<>();
+        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
+        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
+        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
+        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
+        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
+
+        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items,R.layout.activity_manage));
     }
 
     @Override
