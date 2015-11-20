@@ -28,9 +28,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="285dp"
                 android:padding="50dp"
-                android:background="@drawable/cardbackground">
+                android:background="@drawable/cardbackground"
+                android:id="@+id/cardViewImage">
 
-                <Button
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/gallery" />

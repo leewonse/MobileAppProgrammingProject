@@ -41,15 +41,27 @@ public class MenuManage extends Activity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-
         ArrayList<Recycler_item> items=new ArrayList<>();
+
         items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
         items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
         items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
         items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
         items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
+
+
 
         recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items,R.layout.activity_manage));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();;
     }
 
     @Override

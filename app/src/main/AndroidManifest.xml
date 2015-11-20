@@ -49,7 +49,9 @@
             android:name=".GameLotto"
             android:label="GameOver">
         </activity>
-
-
+        <activity
+            android:name=".DialogBox"
+            android:label="DialogBox">
+        </activity>
     </application>
 </manifest>

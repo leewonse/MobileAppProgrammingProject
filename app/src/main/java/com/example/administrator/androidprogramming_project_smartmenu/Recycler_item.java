@@ -10,12 +10,13 @@ public class Recycler_item {
     private int lower;
     private int higher;
     private String location;
+    private int gallery;
+
     public String getStore(){return this.store;}
     public String getMenu(){return this.menu;}
     public int getLower(){return this.lower;}
     public int getHigher(){return this.higher;}
     public String getLocation(){return this.location;}
-    public int gallery;
 
     public Recycler_item(String store, String menu, int lower, int higher, String location, int gallery){
         this.store=store;
@@ -24,5 +25,6 @@ public class Recycler_item {
         this.higher=higher;
         this.location=location;
         this.gallery=gallery;
+
     }
 }
