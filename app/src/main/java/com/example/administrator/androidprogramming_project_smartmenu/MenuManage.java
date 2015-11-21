@@ -3,6 +3,8 @@ package com.example.administrator.androidprogramming_project_smartmenu;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,11 +30,14 @@ public class MenuManage extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage);
 
+        storeDBManager storedbmanager = new storeDBManager(getApplicationContext(), "store.db", null, 1);
+
         findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Go_enroll = new Intent(getApplicationContext(), MenuEnroll.class);
                 startActivity(Go_enroll);
+                finish();
             }
         });
 
@@ -43,12 +48,19 @@ public class MenuManage extends Activity {
 
         ArrayList<Recycler_item> items=new ArrayList<>();
 
-        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
-        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
-        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
-        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
-        items.add(new Recycler_item("store","menu",3000,7000,"중대",R.drawable.cardbasic));
+        SQLiteDatabase db = storedbmanager.getReadableDatabase();
+        String str = "";
 
+        Cursor cursor = db.rawQuery("select * from STORE_LIST", null);
+
+        while(cursor.moveToNext()) {
+            items.add(new Recycler_item(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),R.drawable.cardbasic));
+        }
+        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
+        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
+        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
+        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
+        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
 
 
         recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items,R.layout.activity_manage));

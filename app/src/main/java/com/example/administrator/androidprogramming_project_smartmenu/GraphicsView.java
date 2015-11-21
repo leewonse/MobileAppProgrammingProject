@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -56,10 +58,20 @@ public class GraphicsView extends View{
         float movePositionY;
 
         int height=150;
+        int bestscore=0;
 
         public GraphicsView(Context context){
             super(context);
             this.mcontext = context;
+
+            final scoreDBManager scoredbmanager = new scoreDBManager(getContext(), "score.db", null, 1);
+            SQLiteDatabase db = scoredbmanager.getReadableDatabase();
+            Cursor cursor = db.rawQuery("select * from SCORE_LIST", null);
+            if(cursor.moveToLast()) {
+                bestscore = cursor.getInt(1);
+            }
+            else{bestscore=0;}
+
             ballBounds = new RectF();
             circlePaint = new Paint();
             startline = new Paint();
@@ -77,9 +89,10 @@ public class GraphicsView extends View{
         @Override
         protected void onDraw(Canvas canvas){
             scorePaint.setTextSize(70);
-            canvas.drawText("최고점수",150,1470,scorePaint);
+            canvas.drawText("최고점수", 150, 1470, scorePaint);
             canvas.drawText("점    수",710,1470,scorePaint);
             scorePaint.setTextSize(70);
+            canvas.drawText(bestscore+"",220,1670,scorePaint);
             if(score>=10){
             canvas.drawText(score+"",780,1670,scorePaint);}
             else{canvas.drawText(score+"",790,1670,scorePaint);}

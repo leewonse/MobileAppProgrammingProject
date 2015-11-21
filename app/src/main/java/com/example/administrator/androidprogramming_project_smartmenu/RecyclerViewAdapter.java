@@ -56,8 +56,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         //Drawable drawable=context.getResources().getDrawable(item.getGallery());
         holder.store.setText(item.getStore());
         holder.menu.setText(item.getMenu());
-        holder.lower.setText(item.getLower()+"");
-        holder.higher.setText(item.getHigher()+"");
+        holder.lower.setText(item.getLower());
+        holder.higher.setText(item.getHigher());
         holder.location.setText(item.getLocation());
         holder.gallery.setBackgroundResource(R.drawable.cardbasic);
 
