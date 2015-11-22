@@ -43,13 +43,14 @@ public class scoreDBManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public int PrintData() {
+    public String PrintData() {
         SQLiteDatabase db = getReadableDatabase();
-        int str = 0;
+        String str = "";
 
         Cursor cursor = db.rawQuery("select * from SCORE_LIST", null);
-                    str=cursor.getInt(1);
-
+        while(cursor.moveToNext()) {
+            str += cursor.getInt(1)+" ";
+        }
         return str;
     }
 }

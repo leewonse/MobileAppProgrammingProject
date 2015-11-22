@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,13 +37,17 @@ public class GameOver extends FragmentActivity {
         SQLiteDatabase db = scoredbmanager.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from SCORE_LIST", null);
 
+        if(cursor.moveToFirst()==false){
+            scoredbmanager.insert("insert into SCORE_LIST values(null, " + 0 + ");");
+        }
+
         if(cursor.moveToLast()){
             if(cursor.getInt(1)<score) {
                 BESTscore=score;
                 scoredbmanager.insert("insert into SCORE_LIST values(null, " + BESTscore + ");");
             }
         }
-
+        Log.d("이거다",scoredbmanager.PrintData());
         findViewById(R.id.returnButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
