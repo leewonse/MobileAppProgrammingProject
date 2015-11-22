@@ -17,7 +17,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Created by Administrator on 2015-11-15.
  */
@@ -56,12 +55,6 @@ public class MenuManage extends Activity {
         while(cursor.moveToNext()) {
             items.add(new Recycler_item(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),R.drawable.cardbasic));
         }
-        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
-        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
-        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
-        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
-        //items.add(new Recycler_item("store","menu","3000","7000","중대",R.drawable.cardbasic));
-
 
         recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items,R.layout.activity_manage));
     }

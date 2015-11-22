@@ -18,21 +18,37 @@ import android.widget.TextView;
  */
 public class GameOver extends FragmentActivity {
         TextView scoreView;
+        TextView moneyView;
         int BESTscore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 
         scoreDBManager scoredbmanager = new scoreDBManager(getApplicationContext(), "score.db", null, 1);
-
-
+        final moneyDBManager moneydbmanager = new moneyDBManager(getApplicationContext(), "money.db", null, 1);
 
         Intent intent = getIntent();
         int score = intent.getExtras().getInt("score");
 
         scoreView = (TextView)findViewById(R.id.scoreView);
         scoreView.setText(score+"");
+
+        SQLiteDatabase moneydb = moneydbmanager.getReadableDatabase();
+        Cursor moneycursor = moneydb.rawQuery("select * from MONEY_LIST", null);
+
+        if(moneycursor.moveToFirst()==false){
+            moneydbmanager.insert("insert into MONEY_LIST values(null, " + 0 + ");");
+        }
+
+        if(moneycursor.moveToFirst()) {
+            int old_money = moneycursor.getInt(1);
+            int new_money=score + old_money;
+            moneyView = (TextView) findViewById(R.id.moneyView);
+            moneyView.setText(new_money+"");
+            moneydbmanager.update("update MONEY_LIST set money = " + new_money + " where money = " + old_money + ";");
+        }
 
         SQLiteDatabase db = scoredbmanager.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from SCORE_LIST", null);
@@ -47,7 +63,7 @@ public class GameOver extends FragmentActivity {
                 scoredbmanager.insert("insert into SCORE_LIST values(null, " + BESTscore + ");");
             }
         }
-        Log.d("이거다",scoredbmanager.PrintData());
+
         findViewById(R.id.returnButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/overView">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:id="@+id/gameOver"
             android:textSize="50dp"
             android:textStyle="bold"
-            android:layout_marginTop="114dp"
+            android:layout_marginTop="52dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -53,5 +54,27 @@
             android:layout_marginLeft="66dp"
             android:layout_marginStart="66dp"
             android:textColor="#0d00ff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 화폐"
+            android:id="@+id/TextVieww"
+            android:textStyle="bold"
+            android:textColor="#fff700"
+            android:textSize="40dp"
+            android:layout_below="@+id/gameOver"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/moneyView"
+            android:layout_below="@+id/TextVieww"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textSize="30dp"
+            android:textColor="#fffa00" />
     </RelativeLayout>
 </LinearLayout>
