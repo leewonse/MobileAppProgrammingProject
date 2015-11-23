@@ -194,7 +194,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editlocation"
+                    android:id="@+id/get_location"
                     android:hint="※ 지역을 입력하세요" />
 
             </LinearLayout>

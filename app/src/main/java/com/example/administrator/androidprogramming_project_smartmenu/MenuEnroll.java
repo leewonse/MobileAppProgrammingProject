@@ -1,18 +1,13 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.sql.SQLException;
 
 /**
  * Created by Administrator on 2015-11-15.
@@ -46,7 +41,7 @@ public class MenuEnroll extends Activity {
         editmenu = (EditText)findViewById(R.id.editmenu);
         editlower = (EditText)findViewById(R.id.editlowerprice);
         edithigher = (EditText)findViewById(R.id.edithigherprice);
-        editlocation = (EditText)findViewById(R.id.editlocation);
+        editlocation = (EditText)findViewById(R.id.get_location);
 
         savebutton = (Button)findViewById(R.id.saveButton);
         savebutton.setOnClickListener(new View.OnClickListener() {

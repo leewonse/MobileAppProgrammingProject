@@ -24,8 +24,8 @@
             android:layout_height="50dp"
             android:id="@+id/Eattext"
             android:background="@drawable/eat"
-            android:layout_marginTop="28dp"
-            android:layout_below="@+id/editlocation"
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/get_location"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -33,13 +33,13 @@
             android:layout_height="60dp"
             android:id="@+id/textView14"
             android:background="@drawable/wheretoeat"
-            android:layout_above="@+id/editlocation"
+            android:layout_above="@+id/get_location"
             android:layout_centerHorizontal="true" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editlocation"
+            android:id="@+id/get_location"
             android:hint="☞ 어디서 먹을건가요? ☜"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -49,12 +49,43 @@
             android:layout_height="70dp"
             android:id="@+id/chooseButton"
             android:layout_below="@+id/Eattext"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/choosemenuup"
             android:layout_alignRight="@+id/Eattext"
             android:layout_alignEnd="@+id/Eattext"
             android:layout_alignLeft="@+id/Eattext"
             android:layout_alignStart="@+id/Eattext" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 화폐"
+            android:id="@+id/TextVieww"
+            android:textStyle="bold"
+            android:textColor="#ffd405"
+            android:textSize="30dp"
+            android:layout_below="@+id/chooseButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/moneyView"
+            android:layout_below="@+id/TextVieww"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:textSize="25dp"
+            android:textColor="#fffa00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 메뉴를 고르려면 화폐 20이 있어야합니다."
+            android:id="@+id/textView15"
+            android:layout_above="@+id/textView14"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ff0006" />
 
     </RelativeLayout>
 </LinearLayout>

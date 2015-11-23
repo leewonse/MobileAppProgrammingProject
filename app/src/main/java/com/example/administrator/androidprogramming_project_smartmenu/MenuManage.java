@@ -23,7 +23,7 @@ import java.util.List;
 public class MenuManage extends Activity {
 
     RecyclerView recyclerView;
-
+    ArrayList<Recycler_item> items;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,7 @@ public class MenuManage extends Activity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<Recycler_item> items=new ArrayList<>();
+        items=new ArrayList<>();
 
         SQLiteDatabase db = storedbmanager.getReadableDatabase();
         String str = "";
@@ -66,7 +66,7 @@ public class MenuManage extends Activity {
 
     @Override
     protected void onResume() {
-        super.onResume();;
+        super.onResume();
     }
 
     @Override

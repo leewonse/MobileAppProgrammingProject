@@ -1,13 +1,19 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Administrator on 2015-11-16.
@@ -15,17 +21,48 @@ import android.widget.Button;
 public class MenuChoose extends Activity {
 
     Button choosebutton;
+    TextView view_location;
+    String location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
 
+        moneyDBManager moneydbmanager = new moneyDBManager(getApplicationContext(), "money.db", null, 1);
+        SQLiteDatabase moneydb = moneydbmanager.getReadableDatabase();
+        Cursor moneycursor = moneydb.rawQuery("select * from MONEY_LIST", null);
+
+        if(moneycursor.moveToFirst()==false){
+            moneydbmanager.insert("insert into MONEY_LIST values(null, " + 0 + ");");
+        }
+
         choosebutton = (Button)findViewById(R.id.chooseButton);
         choosebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Go_add = new Intent(getApplicationContext(), MenuEnroll.class);
-                startActivity(Go_add);
+                moneyDBManager moneydbmanager = new moneyDBManager(v.getContext(), "money.db", null, 1);
+                SQLiteDatabase moneydb = moneydbmanager.getReadableDatabase();
+                Cursor moneycursor = moneydb.rawQuery("select * from MONEY_LIST", null);
+
+                if(moneycursor.moveToFirst()) {
+                    int old_money = moneycursor.getInt(1);
+
+                    if(old_money>=20) {
+                        int subtract_money= old_money-20;
+                        moneydbmanager.update("update MONEY_LIST set money = " + subtract_money + " where money = " + old_money + ";");
+
+                        view_location = (TextView)findViewById(R.id.get_location);
+                        location = view_location.getText().toString();
+
+                        Intent Go_add = new Intent(getApplicationContext(), MenuEnroll.class);
+                        Go_add.putExtra("location",location);
+                        startActivity(Go_add);
+                    }
+                    else{
+                        AlertDialog cancle_dialog = createCancelBox();
+                        cancle_dialog.show();
+                    }
+                }
             }
         });
         choosebutton.setOnTouchListener(new View.OnTouchListener() { //버튼 터치시 이벤트
@@ -39,6 +76,24 @@ public class MenuChoose extends Activity {
             }
         });
     }
+
+    private AlertDialog createCancelBox(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Button Click Result");
+        builder.setMessage("화폐 20이 없어요."+"\n"+"게임을 통해 벌어보세요!");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+
+        return dialog;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
