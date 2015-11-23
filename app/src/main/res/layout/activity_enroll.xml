@@ -63,7 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/editstorename"
-                    android:hint="※ 가게명을 입력해주세요" />
+                    android:hint="※ 가게명을 입력해주세요"
+                    android:singleLine="true"/>
 
             </LinearLayout>
 
@@ -97,7 +98,8 @@
                     android:layout_below="@+id/price"
                     android:layout_toRightOf="@+id/editlowerprice"
                     android:layout_toEndOf="@+id/editlowerprice"
-                    android:hint="※ 메뉴를 입력해주세요" />
+                    android:hint="※ 메뉴를 입력해주세요"
+                    android:singleLine="true"/>
             </LinearLayout>
 
             <LinearLayout
@@ -141,7 +143,8 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:hint="$ 최저금액"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:singleLine="true"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -161,7 +164,8 @@
                             android:id="@+id/edithigherprice"
                             android:layout_weight="3"
                             android:hint="$ 최고금액"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:singleLine="true"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -195,7 +199,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/get_location"
-                    android:hint="※ 지역을 입력하세요" />
+                    android:hint="※ 지역을 입력하세요"
+                    android:singleLine="true"/>
 
             </LinearLayout>
 

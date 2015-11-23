@@ -42,7 +42,9 @@
             android:id="@+id/get_location"
             android:hint="☞ 어디서 먹을건가요? ☜"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:gravity="center" />
 
         <Button
             android:layout_width="400dp"

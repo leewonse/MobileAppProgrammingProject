@@ -49,15 +49,17 @@ public class MenuManage extends Activity {
 
         SQLiteDatabase db = storedbmanager.getReadableDatabase();
         String str = "";
-
         Cursor cursor = db.rawQuery("select * from STORE_LIST", null);
 
+
         while(cursor.moveToNext()) {
+            if(cursor.getString(1)!="")
             items.add(new Recycler_item(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),R.drawable.cardbasic));
         }
 
         recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items,R.layout.activity_manage));
     }
+
 
     @Override
     protected void onStart() {

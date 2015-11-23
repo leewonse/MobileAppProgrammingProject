@@ -2,6 +2,7 @@ package com.example.administrator.androidprogramming_project_smartmenu;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Administrator on 2015-11-16.
@@ -23,6 +25,9 @@ public class MenuChoose extends Activity {
     Button choosebutton;
     TextView view_location;
     String location;
+    TextView moneyView;
+
+    boolean cango=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,14 @@ public class MenuChoose extends Activity {
             moneydbmanager.insert("insert into MONEY_LIST values(null, " + 0 + ");");
         }
 
+
+        if(moneycursor.moveToFirst()) {
+            int money = moneycursor.getInt(1);
+
+            moneyView = (TextView) findViewById(R.id.moneyView);
+            moneyView.setText(money+"");
+        }
+
         choosebutton = (Button)findViewById(R.id.chooseButton);
         choosebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,19 +57,35 @@ public class MenuChoose extends Activity {
                 SQLiteDatabase moneydb = moneydbmanager.getReadableDatabase();
                 Cursor moneycursor = moneydb.rawQuery("select * from MONEY_LIST", null);
 
+                moneyDBManager storedbmanager = new moneyDBManager(v.getContext(), "store.db", null, 1);
+                SQLiteDatabase storedb = storedbmanager.getReadableDatabase();
+                Cursor storecursor = storedb.rawQuery("select * from STORE_LIST", null);
+
                 if(moneycursor.moveToFirst()) {
                     int old_money = moneycursor.getInt(1);
 
                     if(old_money>=20) {
-                        int subtract_money= old_money-20;
+                        int subtract_money= old_money;
                         moneydbmanager.update("update MONEY_LIST set money = " + subtract_money + " where money = " + old_money + ";");
 
                         view_location = (TextView)findViewById(R.id.get_location);
                         location = view_location.getText().toString();
 
-                        Intent Go_add = new Intent(getApplicationContext(), MenuEnroll.class);
-                        Go_add.putExtra("location",location);
-                        startActivity(Go_add);
+                        while(storecursor.moveToNext()){
+                            if(location.equals(storecursor.getString(5).toString())){
+                                cango=true;
+                                Intent Go_Choice = new Intent(getApplicationContext(), TodayMenu.class);
+                                Go_Choice.putExtra("location", location);
+                                Go_Choice.setFlags(Go_Choice.FLAG_ACTIVITY_SINGLE_TOP | Go_Choice.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(Go_Choice);
+                                finish();
+                            }
+                        }
+                        if(cango==false){
+                        moneydbmanager.update("update MONEY_LIST set money = " + old_money + " where money = " + subtract_money + ";");
+                        AlertDialog dialog = createBox();
+                        dialog.show();
+                        }
                     }
                     else{
                         AlertDialog cancle_dialog = createCancelBox();
@@ -75,6 +104,23 @@ public class MenuChoose extends Activity {
                 return false;
             }
         });
+    }
+
+    private AlertDialog createBox(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Button Click Result");
+        builder.setMessage("등록된 지역이 아니에요..." + "\n" + "가게를 등록해주세요!!");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+
+        return dialog;
     }
 
     private AlertDialog createCancelBox(){

@@ -41,12 +41,17 @@ public class storeDBManager extends SQLiteOpenHelper {
         db.execSQL(_query);
         db.close();
     }
+    public void deleteDB() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("drop Table STORE_LIST");
+        db.close();
+    }
 
     public String PrintData() {
         SQLiteDatabase db = getReadableDatabase();
         String str = "";
 
-        Cursor cursor = db.rawQuery("select * from FOOD_LIST", null);
+        Cursor cursor = db.rawQuery("select * from STORE_LIST", null);
         while(cursor.moveToNext()) {
             str += cursor.getInt(0)
                     + " : foodName "

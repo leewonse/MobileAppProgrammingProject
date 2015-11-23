@@ -53,5 +53,9 @@
             android:name=".DialogBox"
             android:label="DialogBox">
         </activity>
+        <activity
+            android:name=".TodayMenu"
+            android:label="TodayMenu">
+        </activity>
     </application>
 </manifest>

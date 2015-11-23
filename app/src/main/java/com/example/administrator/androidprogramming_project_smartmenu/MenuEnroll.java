@@ -52,9 +52,9 @@ public class MenuEnroll extends Activity {
                 BD_lower = editlower.getText().toString();
                 BD_higher = edithigher.getText().toString();
                 BD_location = editlocation.getText().toString();
-
-                storedbmanager.insert("insert into STORE_LIST values(null, '" + BD_store + "', '" + BD_menu + "',  '" + BD_lower + "',  '" + BD_higher + "','" + BD_location + "');");
-
+                if(BD_store!="") {
+                    storedbmanager.insert("insert into STORE_LIST values(null, '" + BD_store + "', '" + BD_menu + "',  '" + BD_lower + "',  '" + BD_higher + "','" + BD_location + "');");
+                }
                 finish();
                 //Intent go_menumanage = new Intent();
                 //startActivity(go_menumanage);
