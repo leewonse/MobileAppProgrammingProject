@@ -58,13 +58,13 @@ public class GameLotto extends Activity {
                         moneydbmanager.update("update MONEY_LIST set money = " + subtract_money + " where money = " + old_money + ";");
                         AlertDialog dialog = createDialogBox();
 
-                        if (random < 3) {
+                        if (random < 2) {
                             dialog.show();
-                        } else if (random >= 3 && random < 10) {
+                        } else if (random >= 2 && random < 7) {
                             dialog.show();
-                        } else if (random >= 10 && random < 25) {
+                        } else if (random >= 7 && random < 17) {
                             dialog.show();
-                        } else if (random >= 25 && random < 50) {
+                        } else if (random >= 17 && random < 40) {
                             dialog.show();
                         } else {
                             dialog.show();
@@ -97,7 +97,7 @@ public class GameLotto extends Activity {
         Cursor moneycursor = moneydb.rawQuery("select * from MONEY_LIST", null);
 
         builder.setTitle("Lotto Result");
-        if (random < 3) {
+        if (random < 2) {
             int new_money=0;
             if(moneycursor.moveToFirst()) {
                 int old_money = moneycursor.getInt(1);
@@ -105,7 +105,7 @@ public class GameLotto extends Activity {
                 moneydbmanager.update("update MONEY_LIST set money = " + new_money + " where money = " + old_money + ";");
             }
             builder.setMessage("1등 화폐 +200!! 축하합니다!"+"\n"+"현재 화폐 : " + new_money);
-        } else if (random >= 3 && random < 10) {
+        } else if (random >= 2 && random < 7) {
             int new_money = 0;
             if(moneycursor.moveToFirst()) {
                 int old_money = moneycursor.getInt(1);
@@ -113,7 +113,7 @@ public class GameLotto extends Activity {
                 moneydbmanager.update("update MONEY_LIST set money = " + new_money + " where money = " + old_money + ";");
             }
             builder.setMessage("2등 화폐 +100!! 축하합니다!"+"\n"+"현재 화폐 : " + new_money);
-        } else if (random >= 10 && random < 25) {
+        } else if (random >= 7 && random < 17) {
                 int new_money=0;
             if(moneycursor.moveToFirst()) {
                 int old_money = moneycursor.getInt(1);
@@ -121,7 +121,7 @@ public class GameLotto extends Activity {
                 moneydbmanager.update("update MONEY_LIST set money = " + new_money + " where money = " + old_money + ";");
             }
             builder.setMessage("3등 화폐 +50!!" + "\n" + "현재 화폐 : " + new_money);
-        } else if (random >= 25 && random < 50) {
+        } else if (random >= 17 && random < 40) {
             int new_money=0;
             if(moneycursor.moveToFirst()) {
                 int old_money = moneycursor.getInt(1);

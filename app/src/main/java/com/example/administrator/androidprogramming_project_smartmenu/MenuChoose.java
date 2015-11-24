@@ -65,7 +65,7 @@ public class MenuChoose extends Activity {
                     int old_money = moneycursor.getInt(1);
 
                     if(old_money>=20) {
-                        int subtract_money= old_money;
+                        int subtract_money= old_money-20;
                         moneydbmanager.update("update MONEY_LIST set money = " + subtract_money + " where money = " + old_money + ";");
 
                         view_location = (TextView)findViewById(R.id.get_location);

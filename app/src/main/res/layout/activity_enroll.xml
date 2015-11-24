@@ -41,7 +41,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:id="@+id/linearLayout"
-                android:background="#7c999999"
+                android:background="#dcdfff"
                 android:layout_marginTop="6dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
@@ -72,7 +72,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
-                android:background="#7c999999"
+                android:background="#e0e5ff"
                 android:layout_below="@+id/linearLayout"
                 android:id="@+id/linearLayout3"
                 android:layout_alignParentLeft="true"
@@ -115,7 +115,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#7c999999"
+                    android:background="#e1e9ff"
                     android:layout_margin="3dp">
 
                     <TextView
@@ -176,7 +176,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
-                android:background="#7c999999"
+                android:background="#e5eaff"
                 android:id="@+id/d"
                 android:layout_below="@+id/linearLayout2"
                 android:layout_alignParentLeft="true"
@@ -206,12 +206,12 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="85dp"
                 android:id="@+id/saveButton"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/save"
-                android:layout_margin="3dp" />
+                android:layout_margin="8dp" />
 
 
         </RelativeLayout>

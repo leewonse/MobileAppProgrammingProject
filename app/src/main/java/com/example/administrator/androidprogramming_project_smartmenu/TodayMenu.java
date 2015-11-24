@@ -36,6 +36,7 @@ public class TodayMenu extends Activity {
         String b;
         String c;
         String d;
+
         data(String a, String b, String c, String d){
             this.a=a;
             this.b=b;
@@ -44,11 +45,11 @@ public class TodayMenu extends Activity {
         }
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todaymenu);
-
 
         Intent intent = getIntent();
         String location = intent.getExtras().getString("location");
@@ -70,9 +71,8 @@ public class TodayMenu extends Activity {
                 arraylist.add(new data(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)));
             }
         }
-        Log.d("111111111111",arraylist.size()+"");
+
         choice = (int)(Math.random()*arraylist.size());
-        Log.d("222222222222",choice+"");
         viewstore.setText(arraylist.get(choice).a);
         viewmenu.setText(arraylist.get(choice).b);
         viewlower.setText(arraylist.get(choice).c);

@@ -16,8 +16,7 @@
             android:id="@+id/linearLayout4"
             android:layout_above="@+id/textView14"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp"></LinearLayout>
+            android:layout_alignParentStart="true"></LinearLayout>
 
         <TextView
             android:layout_width="250dp"
@@ -78,16 +77,17 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="7dp"
             android:textSize="25dp"
-            android:textColor="#fffa00" />
+            android:textColor="#ffd801" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="※ 메뉴를 고르려면 화폐 20이 있어야합니다."
             android:id="@+id/textView15"
-            android:layout_above="@+id/textView14"
-            android:layout_centerHorizontal="true"
-            android:textColor="#ff0006" />
+            android:textColor="#ff0006"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/chooseButton"
+            android:layout_alignEnd="@+id/chooseButton" />
 
     </RelativeLayout>
 </LinearLayout>
