@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.androidprogramming_project_smartmenu" >
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -50,12 +51,12 @@
             android:label="GameOver">
         </activity>
         <activity
-            android:name=".DialogBox"
-            android:label="DialogBox">
-        </activity>
-        <activity
             android:name=".TodayMenu"
             android:label="TodayMenu">
+        </activity>
+        <activity
+            android:name=".Webview"
+            android:label="Webview">
         </activity>
     </application>
 </manifest>

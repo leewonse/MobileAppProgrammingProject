@@ -29,6 +29,7 @@ public class TodayMenu extends Activity {
     TextView viewhigher;
 
     Button success;
+    Button movetomap;
     int choice;
 
     class data{
@@ -58,6 +59,15 @@ public class TodayMenu extends Activity {
         viewmenu = (TextView)findViewById(R.id.viewmenu);
         viewlower = (TextView)findViewById(R.id.viewlower);
         viewhigher = (TextView)findViewById(R.id.viewhigher);
+        movetomap = (Button)findViewById(R.id.movetomap);
+
+        movetomap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_MovetoMap = new Intent(getApplicationContext(), Webview.class);
+                startActivity(Go_MovetoMap);
+            }
+        });
 
         storeDBManager storedbmanager = new storeDBManager(getApplicationContext(), "store.db", null, 1);
         SQLiteDatabase db = storedbmanager.getReadableDatabase();

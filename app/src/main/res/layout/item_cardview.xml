@@ -21,39 +21,53 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="370dp"
-            android:id="@+id/card">
+            android:layout_height="150dp"
+            android:background="@drawable/cardbackground"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
-            <RelativeLayout
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="285dp"
-                android:padding="50dp"
-                android:background="@drawable/cardbackground"
-                android:id="@+id/cardViewImage">
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/gallery" />
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:background="#d0fbff"
-                android:layout_alignParentBottom="true"
+                android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
+
+                <Button
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/deletebutton"
+                    android:layout_gravity="right"
+                    android:layout_below="@+id/imageView"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/delete"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="쿠우쿠우"
+                    android:text="오늘의 가게"
                     android:id="@+id/item_store"
                     android:textColor="#000000"
                     android:layout_centerHorizontal="true"
                     android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_row="0"
+                    android:layout_column="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,41 +75,61 @@
                     android:text="메뉴가 들어올곳"
                     android:id="@+id/item_menu"
                     android:textColor="#000000"
-                    android:layout_above="@+id/item_lower"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/item_lower"
+                    android:layout_toEndOf="@+id/item_lower"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp" />
 
-                <TextView
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="낮은가격"
-                    android:id="@+id/item_lower"
-                    android:textColor="#000000"
-                    android:layout_alignTop="@+id/wave"
-                    android:layout_toLeftOf="@+id/wave"
-                    android:layout_toStartOf="@+id/wave" />
+                    android:weightSum="1"
+                    android:layout_marginLeft="75dp"
+                    android:layout_marginRight="70dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="~"
-                    android:id="@+id/wave"
-                    android:textColor="#000000"
-                    android:layout_above="@+id/item_location"
-                    android:layout_alignLeft="@+id/item_store"
-                    android:layout_alignStart="@+id/item_store"
-                    android:layout_alignRight="@+id/item_store"
-                    android:layout_alignEnd="@+id/item_store"
-                    android:gravity="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="낮은가격"
+                        android:id="@+id/item_lower"
+                        android:textColor="#000000"
+                        android:layout_alignBaseline="@+id/wave"
+                        android:layout_alignBottom="@+id/wave"
+                        android:layout_toLeftOf="@+id/wave"
+                        android:layout_toStartOf="@+id/wave"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="높은가격"
-                    android:id="@+id/item_higher"
-                    android:textColor="#000000"
-                    android:layout_above="@+id/item_location"
-                    android:layout_toRightOf="@+id/wave"
-                    android:layout_toEndOf="@+id/wave" />
+                    <TextView
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:text="~"
+                        android:id="@+id/wave"
+                        android:textColor="#000000"
+                        android:layout_above="@+id/item_location"
+                        android:layout_alignLeft="@+id/item_store"
+                        android:layout_alignStart="@+id/item_store"
+                        android:layout_alignRight="@+id/item_store"
+                        android:layout_alignEnd="@+id/item_store"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="높은가격"
+                        android:id="@+id/item_higher"
+                        android:textColor="#000000"
+                        android:layout_above="@+id/wave"
+                        android:layout_toRightOf="@+id/wave"
+                        android:layout_toEndOf="@+id/wave"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -104,8 +138,11 @@
                     android:id="@+id/item_location"
                     android:textColor="#000000"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 

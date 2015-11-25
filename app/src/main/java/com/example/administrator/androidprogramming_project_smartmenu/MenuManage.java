@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,10 +52,10 @@ public class MenuManage extends Activity {
         String str = "";
         Cursor cursor = db.rawQuery("select * from STORE_LIST", null);
 
-
+        Log.d("id들 : ",storedbmanager.PrintData());
         while(cursor.moveToNext()) {
             if(cursor.getString(1)!="")
-            items.add(new Recycler_item(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),R.drawable.cardbasic));
+            items.add(new Recycler_item(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5)));
         }
 
         recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items,R.layout.activity_manage));
