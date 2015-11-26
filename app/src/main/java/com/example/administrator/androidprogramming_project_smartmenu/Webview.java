@@ -1,5 +1,6 @@
 package com.example.administrator.androidprogramming_project_smartmenu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -14,15 +15,20 @@ import android.webkit.WebViewClient;
 public class Webview extends AppCompatActivity {
 
     WebView mWebView;
-
+    String location;
+    String store;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
 
+        Intent intent = getIntent();
+        location = intent.getExtras().getString("location");
+        store = intent.getExtras().getString("store");
+
         mWebView = (WebView) findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("https://www.google.co.kr/" );
+        mWebView.loadUrl("https://www.google.co.kr/maps/place/");
         mWebView.setWebViewClient(new WishWebViewClient());
     }
 

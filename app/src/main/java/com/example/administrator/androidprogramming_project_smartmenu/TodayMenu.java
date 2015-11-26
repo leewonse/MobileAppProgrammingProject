@@ -31,6 +31,8 @@ public class TodayMenu extends Activity {
     Button success;
     Button movetomap;
     int choice;
+    String location;
+    String store;
 
     class data{
         String a;
@@ -53,7 +55,7 @@ public class TodayMenu extends Activity {
         setContentView(R.layout.activity_todaymenu);
 
         Intent intent = getIntent();
-        String location = intent.getExtras().getString("location");
+        location = intent.getExtras().getString("location");
 
         viewstore = (TextView)findViewById(R.id.viewstore);
         viewmenu = (TextView)findViewById(R.id.viewmenu);
@@ -61,10 +63,14 @@ public class TodayMenu extends Activity {
         viewhigher = (TextView)findViewById(R.id.viewhigher);
         movetomap = (Button)findViewById(R.id.movetomap);
 
+        store = viewstore.toString();
+
         movetomap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Go_MovetoMap = new Intent(getApplicationContext(), Webview.class);
+                Go_MovetoMap.putExtra("location",location);
+                Go_MovetoMap.putExtra("store",store);
                 startActivity(Go_MovetoMap);
             }
         });
