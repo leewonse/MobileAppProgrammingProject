@@ -15,14 +15,14 @@
         android:layout_marginBottom="10dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="네이버지도"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:id="@+id/movetomap"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/linearLayout6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="15dp"
+        android:background="@drawable/googlemaps" />
 
     <LinearLayout
         android:orientation="vertical"
