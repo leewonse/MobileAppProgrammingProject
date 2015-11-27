@@ -56,9 +56,6 @@ public class MenuEnroll extends Activity {
                     storedbmanager.insert("insert into STORE_LIST values(null, '" + BD_store + "', '" + BD_menu + "',  '" + BD_lower + "',  '" + BD_higher + "','" + BD_location + "');");
                 }
                 finish();
-                //Intent go_menumanage = new Intent();
-                //startActivity(go_menumanage);
-
             }
         });
     }

@@ -17,6 +17,7 @@ public class Webview extends AppCompatActivity {
     WebView mWebView;
     String location;
     String store;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class Webview extends AppCompatActivity {
 
         mWebView = (WebView) findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("https://www.google.co.kr/maps/place/");
+        mWebView.loadUrl("https://www.google.co.kr/maps/place/"+location);
         mWebView.setWebViewClient(new WishWebViewClient());
     }
 

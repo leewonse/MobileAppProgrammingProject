@@ -44,7 +44,7 @@ public class GameLotto extends Activity {
         lottobutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                random = (float) Math.random() * 100;
+                random = (float) Math.random() * 2;
 
                 moneyDBManager moneydbmanager = new moneyDBManager(v.getContext(), "money.db", null, 1);
                 SQLiteDatabase moneydb = moneydbmanager.getReadableDatabase();

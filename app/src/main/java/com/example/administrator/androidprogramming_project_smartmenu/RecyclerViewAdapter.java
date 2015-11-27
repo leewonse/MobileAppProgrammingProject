@@ -53,9 +53,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder,int position) {
         final Recycler_item item = items.get(position);
         final int real_position = items.get(position).getId();
+        final int p_position= position;
 
         holder.store.setText(item.getStore());
         holder.menu.setText(item.getMenu());
@@ -69,6 +70,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 moneyDBManager storedbmanager = new moneyDBManager(v.getContext(), "store.db", null, 1);
                 SQLiteDatabase storedb = storedbmanager.getReadableDatabase();
                 storedbmanager.delete("delete from STORE_LIST where _id = " + real_position + ";");
+
+                Log.d("Item_position", real_position + "");
+                Log.d("item _id", p_position+"");
 
                 Intent intent = new Intent (context, MenuManage.class);
                 intent.setFlags(intent.FLAG_ACTIVITY_NO_HISTORY);
