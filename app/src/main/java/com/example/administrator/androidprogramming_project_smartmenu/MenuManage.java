@@ -25,11 +25,12 @@ public class MenuManage extends Activity {
 
     RecyclerView recyclerView;
     ArrayList<Recycler_item> items;
+    public static Activity MMActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage);
-
+        MMActivity = MenuManage.this;
         storeDBManager storedbmanager = new storeDBManager(getApplicationContext(), "store.db", null, 1);
 
         findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {

@@ -74,9 +74,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Log.d("Item_position", real_position + "");
                 Log.d("item _id", p_position+"");
 
+                MenuManage MMActivity = (MenuManage)MenuManage.MMActivity;
                 Intent intent = new Intent (context, MenuManage.class);
-                intent.setFlags(intent.FLAG_ACTIVITY_NO_HISTORY);
                 v.getContext().startActivity(intent);
+                MMActivity.finish();
             }
         });
     }
